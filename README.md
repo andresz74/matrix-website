@@ -9,7 +9,7 @@ This fan-made website is a tribute to **The Matrix** film series, blending cinem
 ### 🖥️ **Live Demo**
 
 Explore the site by opening `index.html` in any modern browser, or visit the hosted version here:  
-🔗 [https://zenteno.org/matrix](https://zenteno.org/matrix)
+🔗 [https://thematrix.andreszenteno.com](https://thematrix.andreszenteno.com)
 
 ---
 
@@ -50,10 +50,45 @@ To run the site locally:
    git clone https://github.com/andresz74/matrix-website.git
    cd matrix-website
    ```
-2. **Open the main file**:
-   Launch `index.html` in your browser.
+
+2. **Don't just open `index.html` directly**:
+   Modern browsers block local file access (like `file:///`) for security reasons. Use a local web server instead.
 
 ---
+
+### 📦 **Local Development Tips**
+
+If you try to open `index.html` directly from your file browser, you'll likely encounter errors like:
+
+```
+Not allowed to load local resource: file:///assets/css/style.css
+Fetch API cannot load file:///components/header.html due to access control checks.
+```
+
+These errors happen because modern browsers restrict local `file://` access. To fix this, run a **local web server**:
+
+#### ✅ Option 1: Use Python (built-in on most systems)
+
+```bash
+cd matrix-website
+python3 -m http.server 8000
+```
+
+Then visit: [http://localhost:8000](http://localhost:8000)
+
+#### ✅ Option 2: Use Node.js and `http-server`
+
+```bash
+npm install -g http-server
+cd matrix-website
+http-server -p 8000
+```
+
+#### ✅ Option 3: Use **Live Server** in VS Code
+
+1. Install the **Live Server** extension.
+2. Right-click `index.html` → **Open with Live Server**
+
 
 ### 🧠 **Features**
 
@@ -78,7 +113,7 @@ To run the site locally:
 
 ### 🌟 **Preview**
 
-![Matrix Falling Code Animation](https://zenteno.org/public_assets/matrix-rain-2.png)
+![The Matrix Fan Website](https://zenteno.org/public_assets/matrix-website-screenshot.png)
 
 ---
 
