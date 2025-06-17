@@ -265,7 +265,7 @@ h2 {
 
 @media screen and (min-width: 344px) {
   .centered-box {
-    height: calc(100% - 92px);
+    height: calc(100% - 103px);
   }
 }
 
