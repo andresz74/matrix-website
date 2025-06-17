@@ -20,10 +20,6 @@ yarn-error.log
 *.bak
 *.pid
 
-# Compiled files
-*.min.js
-*.min.css
-
 # Cache files
 *.cache
 .cache/
