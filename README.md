@@ -130,4 +130,4 @@ All Matrix-related content (images, character names, etc.) remains the property 
 Frontend Developer & Sci-Fi Enthusiast
 GitHub: [@andresz74](https://github.com/andresz74)
 Email: [azenteno74@gmail.com](mailto:azenteno74@gmail.com)
-Website: [zenteno.org](https://zenteno.org)
+Website: [andreszenteno.com](https://andreszenteno.com)
