@@ -458,12 +458,76 @@ h2 {
   margin-bottom: 1rem;
 }
 
+.characters-main {
+  padding: 1rem;
+}
+
+.characters-header {
+  margin-bottom: 1.5rem;
+}
+
+.characters-header p {
+  line-height: 1.5;
+  margin-top: 0.5rem;
+}
+
+.characters-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.character-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1.25rem;
+}
+
+.character-card h3 {
+  font-size: 1.25rem;
+}
+
+.character-role {
+  color: var(--green);
+  font-size: 0.9rem;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.character-card ul {
+  padding-left: 1.25rem;
+}
+
+.character-card li + li {
+  margin-top: 0.5rem;
+}
+
 @media screen and (min-width: 1024px) {
   .synopsis-main {
     padding: 3rem;
   }
   .synopsis-main section {
     margin: 2rem 0;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .characters-main {
+    padding: 1.5rem;
+  }
+
+  .characters-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .characters-main {
+    padding: 3rem;
+  }
+
+  .characters-grid {
+    gap: 1.5rem;
   }
 }
 
@@ -551,9 +615,69 @@ h2 {
   .gallery-wrapper a:nth-child(4n + 2) img {
     height: 240px;
   }
-  .gallery-wrapper a img.portrait {
+.gallery-wrapper a img.portrait {
     height: 320px;
   }
+}
+
+.lightbox {
+  align-items: center;
+  display: none;
+  inset: 0;
+  justify-content: center;
+  padding: 1rem;
+  position: fixed;
+  z-index: 300;
+}
+
+.lightbox.is-open {
+  display: flex;
+}
+
+.lightbox-backdrop {
+  background: rgba(0, 0, 0, 0.75);
+  inset: 0;
+  position: absolute;
+}
+
+.lightbox-content {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  max-height: 90vh;
+  max-width: min(90vw, 960px);
+  padding: 1.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.lightbox-content img {
+  border-radius: var(--border-radius-16);
+  max-height: 70vh;
+  max-width: 100%;
+  object-fit: contain;
+  width: auto;
+}
+
+.lightbox-caption {
+  font-size: 0.95rem;
+  text-align: center;
+}
+
+.lightbox-close {
+  align-self: flex-end;
+  background: none;
+  border: none;
+  color: var(--green);
+  cursor: pointer;
+  font-size: 2rem;
+  line-height: 1;
+  padding: 0;
+}
+
+.lightbox-close:hover {
+  border-bottom: 1px solid transparent;
 }
 
 .glass {

@@ -91,9 +91,13 @@ function matrixOverlay(canvasId, { fontSize = 16, color = "rgba(255, 255, 255, 0
     return canvas;
 }
 
-// Resize all canvases on window resize
+// Resize all canvases on window resize (debounced for performance)
+let resizeTimeoutId;
 window.addEventListener("resize", () => {
-    document.querySelectorAll("canvas").forEach(resizeCanvas);
+    window.clearTimeout(resizeTimeoutId);
+    resizeTimeoutId = window.setTimeout(() => {
+        document.querySelectorAll("canvas").forEach(resizeCanvas);
+    }, 150);
 });
 
 function toggleBlurWithAnimation(canvasId, interval = 1000) {

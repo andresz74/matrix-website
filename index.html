@@ -129,6 +129,9 @@
 
 		function loadGallery() {
 			const gallery = document.getElementById('gallery-collage');
+			const lightbox = document.getElementById('gallery-lightbox');
+			const lightboxImage = document.getElementById('lightbox-image');
+			const lightboxCaption = document.getElementById('lightbox-caption');
 			if (gallery) {
 				gallery.innerHTML = ''; // Clear existing content
 				const images = [
@@ -175,16 +178,59 @@
 				images.forEach(({ name, orientation }) => {
 					const anchor = document.createElement('a');
 					anchor.href = `assets/images/${name}.jpg`;
-					anchor.target = '_blank';
+					anchor.dataset.lightbox = 'true';
+					anchor.dataset.caption = name.replace(/_/g, ' ');
 
 					const img = document.createElement('img');
 					img.src = `assets/images/thumbs/${name}.jpg`;
 					img.alt = name;
+					img.loading = 'lazy';
 					img.className = orientation;
 
 					anchor.appendChild(img);
 					gallery.appendChild(anchor);
 				});
+			}
+
+			if (gallery && lightbox && lightboxImage && lightboxCaption && !lightbox.dataset.bound) {
+				const openLightbox = (imageSrc, caption) => {
+					lightboxImage.src = imageSrc;
+					lightboxImage.alt = caption;
+					lightboxCaption.textContent = caption;
+					lightbox.classList.add('is-open');
+					lightbox.setAttribute('aria-hidden', 'false');
+					document.body.style.overflow = 'hidden';
+				};
+
+				const closeLightbox = () => {
+					lightbox.classList.remove('is-open');
+					lightbox.setAttribute('aria-hidden', 'true');
+					lightboxImage.src = '';
+					lightboxImage.alt = '';
+					lightboxCaption.textContent = '';
+					document.body.style.overflow = '';
+				};
+
+				gallery.addEventListener('click', (event) => {
+					const target = event.target.closest('a[data-lightbox="true"]');
+					if (!target) return;
+					event.preventDefault();
+					openLightbox(target.href, target.dataset.caption || 'Gallery image');
+				});
+
+				lightbox.addEventListener('click', (event) => {
+					if (event.target.closest('[data-lightbox-close]')) {
+						closeLightbox();
+					}
+				});
+
+				document.addEventListener('keydown', (event) => {
+					if (event.key === 'Escape' && lightbox.classList.contains('is-open')) {
+						closeLightbox();
+					}
+				});
+
+				lightbox.dataset.bound = 'true';
 			}
 		}
 
@@ -221,6 +267,9 @@
 				break;
 			case "/synopsis":
 				loadPage("pages/synopsis.html", "Synopsis", "/synopsis");
+				break;
+			case "/characters":
+				loadPage("pages/characters.html", "Characters", "/characters");
 				break;
 			case "/gallery":
 				loadPage("pages/gallery.html", "Gallery", "/gallery");
